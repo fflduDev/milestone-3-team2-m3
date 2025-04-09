@@ -1,60 +1,71 @@
 package graph;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-
-//simplest possible adjacency list implementation of the node
+import java.util.Map;
 
 public class GraphNode {
 	private String value;
-	private HashMap<GraphNode, Integer> paths = new HashMap<>();
-	
-	public GraphNode(String item) {
-		value = item;
+	private Map<GraphNode, Integer> edges;
+
+	public GraphNode(String value) {
+		this.value = value;
+		this.edges = new HashMap<>();
 	}
-	
-	
+
 	public String getValue() {
 		return value;
 	}
-	
-	public void setValue(String newValue) {
-		value = newValue;
-	}
-	
 
-	public List<GraphNode> getNeighbors() {
-		return new ArrayList<GraphNode>(paths.keySet());
+	public void setValue(String value) {
+		this.value = value;
 	}
-	
-	
-	
-	public Integer getDistanceToNeighbor(GraphNode neighbor) {
-		for (GraphNode thisNode : paths.keySet()) {
-			if (thisNode.getValue().equals(neighbor.getValue())) {
-				return paths.get(thisNode);
+
+	public Map<GraphNode, Integer> getEdges() {
+		return edges;
+	}
+
+	public void addEdge(GraphNode toNode, int weight) {
+		edges.put(toNode, weight);
+	}
+
+	public void removeEdge(GraphNode toNode) {
+		edges.remove(toNode);
+	}
+
+	public boolean hasEdge(GraphNode toNode) {
+		return edges.containsKey(toNode);
+	}
+
+	public Integer getEdgeWeight(GraphNode toNode) {
+		return edges.get(toNode);
+	}
+
+	public void setEdgeWeight(GraphNode toNode, int weight) {
+		edges.put(toNode, weight);
+	}
+
+	public void printNeighbors() {
+		System.out.println("All edges from <" + value + "> are:");
+		if (edges.isEmpty()) {
+			System.out.println("- There is no edge from <" + value + ">.");
+		} else {
+			for (GraphNode neighbor : edges.keySet()) {
+				System.out.println("- Edge to <" + neighbor.getValue() + ">, with weight " + edges.get(neighbor) + ".");
 			}
 		}
-		return null;
 	}
-	
 
-	public Boolean removeNeighbor(GraphNode neighbor) {
-		Boolean returnValue = false;
-		for (GraphNode thisNode : paths.keySet()) {
-			if (thisNode.getValue().equals(neighbor.getValue())) {
-				paths.remove(thisNode);
-				returnValue = true;
-			}
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof GraphNode) {
+			GraphNode other = (GraphNode) obj;
+			return this.value.equals(other.value);
 		}
-		return returnValue;
+		return false;
 	}
-	
-	public Boolean addNeighbor(GraphNode neighbor, Integer weight) {
-		if (getDistanceToNeighbor(neighbor) != null) return false;
-		paths.put(neighbor, weight);
-		return true;
+
+	@Override
+	public int hashCode() {
+		return value.hashCode();
 	}
-	
 }
