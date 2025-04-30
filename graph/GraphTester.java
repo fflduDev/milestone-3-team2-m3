@@ -49,6 +49,17 @@ public class GraphTester {
 		graph.addEdgeStr("G", "C", 5);
 		graph.addEdgeStr("G", "E", 8);
 		
+		// graph.addEdge("A", "B", 5);
+		// graph.addEdgeStr("B", "C", 5);
+		// graph.addEdgeStr("C", "D", 1);
+		// graph.addEdgeStr("E", "F", 1);
+		// graph.addEdgeStr("F", "A", 1);
+		// graph.addEdgeStr("C", "F", 2);
+		// graph.addEdgeStr("D", "B", 15);
+		// graph.addEdgeStr("G", "C", 5);
+		// graph.addEdgeStr("G", "E", 8);
+
+
 		//describe
 		printNodesValues(graph.getNodes());
 		graph.getNodes().forEach(n -> n.printNeighbors());

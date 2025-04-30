@@ -24,5 +24,10 @@ public interface DiGraph {
 	
 	public int fewestHops(GraphNode fromNode, GraphNode toNode);
 	public int shortestPath(GraphNode fromNode, GraphNode toNode);
+	
+	//had to add these
+	public List<GraphNode> getFewestHopsPath(GraphNode fromNode, GraphNode toNode);
+	public List<GraphNode> getShortestPath(GraphNode fromNode, GraphNode toNode);
+	public Boolean addEdgeStr(String fromVal, String toVal, Integer weight);
 
 }

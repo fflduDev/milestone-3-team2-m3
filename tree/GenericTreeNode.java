@@ -8,6 +8,8 @@ public class GenericTreeNode<E> {
 	
 	public GenericTreeNode(E theItem) {
 		data = theItem;
+		children = new ArrayList<>();
+
 	}
 	
 	public void addChild(GenericTreeNode<E> theItem) {
@@ -18,6 +20,15 @@ public class GenericTreeNode<E> {
 		// this one is a little harder.
 		// what do you do when the item has children?
 		// I suggest "give them to the parent"
+		for (int i = 0; i < children.size(); i++) {
+			if (children.get(i).data.equals(theItem)) {
+				GenericTreeNode<E> toRemove = children.get(i);
+				children.addAll(toRemove.children);
+				children.remove(i);
+				break;
+			}
+		}
+
 	}
 	
 	

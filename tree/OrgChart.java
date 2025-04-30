@@ -14,7 +14,7 @@ public interface OrgChart {
 	public void removeEmployee(Employee firedPerson);
 		// remove the employee, give their direct reports to their supervisor
 	
-	public void showOrgChartDepthFirst(); 
+	public void showOrgChartDepthFirst();
 	
 	public void showOrgChartBreadthFirst();
 	

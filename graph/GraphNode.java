@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//simplest possible adjacency list implementation of the node
 
 public class GraphNode {
 	private String value;
@@ -56,5 +55,13 @@ public class GraphNode {
 		paths.put(neighbor, weight);
 		return true;
 	}
+
+	public void printNeighbors() {
+		System.out.println("neighbors of " + value + ":");
+		for (GraphNode neighbor : paths.keySet()) {
+			System.out.println("  -> " + neighbor.getValue() + " |weight " + paths.get(neighbor) + "|  ");
+		}
+	}
+	
 	
 }
